@@ -1,0 +1,41 @@
+<div class="container p-5">
+  <div *ngIf="!cart">
+    <b>Np product added to Cart</b>
+  </div>
+  <div *ngIf="cart">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let myCart of cart">
+          <th scope="row">1</th>
+          <td>{{ myCart.productName }}</td>
+          <td>{{ myCart.price }}</td>
+          <td>{{ myCart.quantity }}</td>
+          <td>{{ myCart.quantity * myCart.price }}</td>
+        </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        <tr>
+          <th scope="col">>></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">Grand Total</th>
+          <th scope="col">Total</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

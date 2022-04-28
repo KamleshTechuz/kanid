@@ -1,0 +1,93 @@
+<br /><br />
+<div class="container">
+  <div class="container">
+    <h1>Login to save more...</h1>
+  </div>
+  <br />
+  <div class="container" *ngIf="data?.error">
+    <p class="alert alert-danger">{{ data?.error }}</p>
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <form
+          (ngSubmit)="f.valid && onSubmit(f.value)"
+          #f="ngForm"
+          [formGroup]="form"
+          novalidate
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Email</label>
+            <input
+              formControlName="email"
+              type="text"
+              class="form-control"
+              id="text"
+              placeholder="jhon@example.com"
+            />
+            <div
+              *ngIf="
+                form.get('email').touched &&
+                form.get('email').errors?.['required'] ||
+                form.get('email').errors?.['email']
+              "
+              class="text-danger"
+            >
+              Email is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Password</label
+            >
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="********"
+            />
+            <div
+              *ngIf="
+              form.get('password').touched &&
+              form.get('password').errors?.['required'] ||
+              form.get('password').errors?.['minlength']
+            "
+              class="text-danger"
+            >
+              Password required with minimum length 6.
+            </div>
+          </div>
+          <br />
+          <div class="col-auto">
+            <button
+              type="submit"
+              [disabled]="form.invalid"
+              class="btn btn-outline-secondary mb-3"
+            >
+              Login
+            </button>
+            &nbsp;
+            <button
+              type="button"
+              routerLink="forget-password"
+              class="btn btn-outline-secondary mb-3"
+            >
+              Forget password
+            </button>
+            &nbsp;
+            <button
+              type="button"
+              routerLink="/account/signup"
+              class="btn btn-outline-secondary mb-3"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+</div>

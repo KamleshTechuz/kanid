@@ -1,0 +1,58 @@
+<div *ngIf="totalProd > 0; then yesProdcuts; else noProducts"></div>
+<ng-template #yesProdcuts>
+  <div class="container pt-5">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div *ngFor="let product of products">
+        <div class="col">
+          <div class="card">
+            <img src="{{ product.imageUrl }}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.productName }}</h5>
+              <p class="card-text">Price : {{ product.price }}</p>
+              <p *ngFor="let color of product.colors">{{color.colorName}}</p>
+              <p class="card-text">Brand name : {{ product.brandName }}</p>
+              <p class="card-text">Description : {{ product.description }}</p>
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="addToCart(product.id)"
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container fixed-bottom">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" (click)="prePage()" type="button">
+            Previous
+          </button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" type="button">1</button>
+        </li>
+        <li class="page-item" aria-current="page">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <button class="page-link" type="button">3</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" type="button" (click)="nextPage()">
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>
+<ng-template #noProducts>
+  <div class="container pt-5">
+    <h1>Oops! You don not have any product.</h1>
+  </div>
+</ng-template>

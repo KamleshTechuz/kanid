@@ -1,0 +1,230 @@
+<div class="container p-5">
+  <h1>Add your product here...</h1>
+</div>
+
+<div class="container p-5 pt-0">
+  <div *ngIf="data?.error" class="alert alert-danger">{{ data.error }}</div>
+  <form
+    class="form-signin"
+    (ngSubmit)="f.valid && onSubmit(f.value, $event)"
+    #f="ngForm"
+    novalidate
+    [formGroup]="form"
+  >
+    <div class="row py-2">
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Product name</label
+        >
+        <input
+          formControlName="productName"
+          type="text"
+          name="productName"
+          class="form-control"
+          placeholder="Boat earphon 255"
+        />
+        <div
+          *ngIf="
+form.get('productName').touched &&
+form.get('productName').errors?.['required'] ||
+form.get('productName').errors?.['minlength']
+"
+          class="text-danger"
+        >
+          Required with minimum length 6.
+        </div>
+      </div>
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label">Price</label>
+        <input
+          formControlName="price"
+          name="price"
+          type="number"
+          class="form-control"
+          placeholder="199.99"
+        />
+        <div
+          *ngIf="
+form.get('price').touched &&
+form.get('price').errors?.['required']
+"
+          class="text-danger"
+        >
+          Price is equired.
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Brand name</label
+        >
+        <input
+          type="text"
+          formControlName="brandName"
+          name="brandName"
+          class="form-control"
+          placeholder="Boat"
+        />
+        <div
+          *ngIf="
+form.get('brandName').touched &&
+form.get('brandName').errors?.['required'] ||
+form.get('brandName').errors?.['minlength']
+"
+          class="text-danger"
+        >
+          Required with minimum length 3.
+        </div>
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Product image</label
+        >
+        <input
+          formControlName="imageUrl"
+          name="imageUrl"
+          type="url"
+          class="form-control"
+          placeholder="https://..."
+        />
+        <div
+          *ngIf="
+form.get('imageUrl').touched &&
+form.get('imageUrl').errors?.['required']
+"
+          class="text-danger"
+        >
+          Image url is required.
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Categoty</label
+        >
+        <select
+          formControlName="category"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option value="electronics">Electronics</option>
+          <option value="clothes">Clothes</option>
+          <option value="cosmatics">Cosmatics</option>
+          <option value="fashion">Fashion</option>
+        </select>
+        <div
+          *ngIf="
+form.get('category').touched &&
+form.get('category').errors?.['required']
+"
+          class="text-danger"
+        >
+          Category is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Password</label
+        >
+        <input
+          type="password"
+          formControlName="password"
+          name="password"
+          class="form-control"
+          placeholder="********"
+        />
+        <div
+          *ngIf="
+form.get('password').touched &&
+form.get('password').errors?.['required'] ||
+form.get('password').errors?.['minlength']
+"
+          class="text-danger"
+        >
+          Required with minimum length 6.
+        </div>
+      </div>
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          formControlName="confirmPass"
+          name="confirmPass"
+          class="form-control"
+          placeholder="********"
+        />
+        <div
+          *ngIf="
+form.get('confirmPass').touched &&
+form.get('confirmPass').errors?.['required'] ||
+form.get('confirmPass').errors?.['minlength']
+"
+          class="text-danger"
+        >
+          Required with minimum length 6.
+        </div>
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Color (use CTRL + click to select multiple.)</label
+        >
+
+        <select multiple formControlName="colors" class="form-select">
+          <option *ngFor="let color of colors" value="{{ color.id }}">
+            {{ color.colorName }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+form.get('colors').touched &&
+form.get('colors').errors?.['required'] 
+"
+          class="text-danger"
+        >
+          Color is equired.
+        </div>
+      </div>
+      <div class="col">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Example textarea</label
+        >
+        <textarea
+          formControlName="description"
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          placeholder="Add your products's description here..."
+        ></textarea>
+        <div
+          *ngIf="
+form.get('description').touched &&
+form.get('description').errors?.['required'] ||
+form.get('description').errors?.['minlength']
+"
+          class="text-danger"
+        >
+          Required with minimum length 20.
+        </div>
+      </div>
+    </div>
+    <div class="col d-grid mt-4">
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="btn btn-outline-secondary"
+      >
+        Add product
+      </button>
+    </div>
+  </form>
+</div>
