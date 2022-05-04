@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class UpdateProductComponent implements OnInit {
   form: any
+  file: any
   prodId: any
   product: any;
   error: any
@@ -38,12 +39,12 @@ export class UpdateProductComponent implements OnInit {
       productName: ['', [Validators.required, Validators.minLength(6)]],
       brandName: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      image: [],
       category: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(20)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPass: ['', [Validators.required, Validators.minLength(6)]],
-      colors: ['', Validators.required]
+      colors: ['']
     })
 
   }
@@ -55,6 +56,8 @@ export class UpdateProductComponent implements OnInit {
       this.error = this.result.error
       this.message = this.result.message
       this.product = this.result.product
+      // console.log(this.product);
+
       this.form.patchValue(this.product);
 
     })
@@ -65,8 +68,35 @@ export class UpdateProductComponent implements OnInit {
       this.colors = this.result.colors
     })
   }
+  onSelectFile(event: any) {
+    console.log(event.target.files);
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0]
+    } else {
+      this.file = null
+    }
+  }
+
+  jsonToFormData(formData: any) {
+    console.log(typeof formData, 'formData : ', formData);
+
+    const newFormData = new FormData()
+    for (var key in formData) {
+      newFormData.append(key, formData[key]);
+    }
+    if (this.file) {
+console.log('file h apne pas');
+
+      newFormData.append('image', this.file)
+    }
+    return newFormData
+  }
+
   onUpdate(formData: any) {
-    this.sellerSer.onupdate(this.prodId, formData).subscribe(result => {
+
+    const newFormData = this.jsonToFormData(formData)
+    console.log(newFormData);
+    this.sellerSer.onupdate(this.prodId, newFormData).subscribe(result => {
       this.result = result
       this.error = this.result.error
       this.message = this.result.message

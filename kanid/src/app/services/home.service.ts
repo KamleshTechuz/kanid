@@ -4,18 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeService {
-
   constructor() { }
 
-  get isLogged(){
-    if(localStorage.getItem('token')){
+  get isLogged() {
+    if (localStorage.getItem('token')) {
       return true
     }
     return false
   }
 
-  get isSeller(){
-    if(localStorage.getItem('seller-token')){
+  get isSeller() {
+    if (localStorage.getItem('seller-token')) {
       return true
     }
     return false

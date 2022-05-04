@@ -16,6 +16,7 @@ router.post("/seller/change-password", isSeller, sellerContro.changePass);
 router.post(
   "/seller/add-product",
   isSeller,
+  upload.single("image"),
   prodContro.addProducts
 );
 router.get("/seller/my-products?", isSeller, sellerContro.getProducts);
@@ -28,8 +29,9 @@ router.post(
 router.post(
   "/seller/my-product/:id/update",
   isSeller,
+  upload.single("image"),
   prodContro.updateProducts
 );
 
-router.get('/seller/my-products?', isSeller, sellerContro.logout)
+router.get("/seller/my-products?", isSeller, sellerContro.logout);
 module.exports = router;

@@ -2,7 +2,7 @@ const Seller = require("../models/seller");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Product = require("../models/product");
-const Color = require('../models/color')
+const Color = require("../models/color");
 exports.signup = async (req, res) => {
   console.log(req.body);
   const {
@@ -144,40 +144,34 @@ exports.getProducts = async (req, res) => {
   const currPage = req.query.page || 1;
   console.log(currPage);
   const perPage = 2;
-  try{
-    totalProds = await Product.count();
-    if (totalProds) {
-      console.log('req.seller.id : ',req.seller.id);
-      const products = await Product.findAndCountAll({
-        where : {sellerId : req.seller.id},
-        offset: (currPage - 1) * perPage,
-        limit: 2,
-        required: false,
-        attributes: {
-          exclude: ["createdAt", "updatedAt", "OwnerId"],
+  try {
+    const products = await Product.findAndCountAll({
+      where: { sellerId: req.seller.id },
+      offset: (currPage - 1) * perPage,
+      limit: 2,
+      required: false,
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "OwnerId"],
+      },
+      include: [
+        {
+          model: Color,
+          attributes: ["colorName"],
+          through: { attributes: [] },
         },
-        include: [
-          {
-            model: Color,
-            attributes: ["colorName"],
-            through: { attributes: [] },
-          },
-        ],
-        distinct: true,
+      ],
+      distinct: true,
+    });
+    if (products) {
+      return res.status(200).json({
+        message: "Product fetched",
+        products: products.rows,
+        totalProds : products.count,
       });
-      if(products){
-
-        return res.status(200).json({
-          message: "Product fetched",
-          products : products.rows,
-          totalProds,
-        });
-      }
     } else {
-      return res.status(200).json({ message: "Products not available.", });
+      return res.status(200).json({ error: "Products not available." });
     }
-  }catch(error){
-    return res.status(200).json({ error: "Something happend wrong.", });
+  } catch (error) {
+    return res.status(200).json({ error: "Something happend wrong." });
   }
-
 };

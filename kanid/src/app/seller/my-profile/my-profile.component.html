@@ -10,82 +10,85 @@
     novalidate
     [formGroup]="form"
   >
+  <div class="card col-6 p-5">
+    
+    <div class="">
+      <label for="exampleFormControlInput1" class="form-label"
+        >Old password</label
+      >
+      <input
+        type="password"
+        formControlName="oldPass"
+        name="password"
+        class="form-control"
+        placeholder="********"
+      />
+      <div
+      *ngIf="
+          form.get('oldPass').touched &&
+          form.get('oldPass').errors?.['required'] ||
+          form.get('oldPass').errors?.['minlength']
+        "
+      class="text-danger"
+    >
+      Required with minimum length 6.
+    </div>
+    </div>
+    <br />
+  
+    <div class="">
+      <label for="exampleFormControlInput1" class="form-label"
+        >New password</label
+      >
+      <input
+        type="password"
+        formControlName="newPass"
+        name="newPass"
+        class="form-control"
+        placeholder="********"
+      />
+      <div
+      *ngIf="
+        form.get('newPass').touched &&
+        form.get('newPass').errors?.['required'] ||
+        form.get('newPass').errors?.['minlength']
+      "
+      class="text-danger"
+    >
+      Required with minimum length 6.
+    </div>
+    </div><br>
+    <div class="">
+      <label for="exampleFormControlInput1" class="form-label"
+        >Confirm password</label
+      >
+      <input
+        type="password"
+        formControlName="confirmPass"
+        name="confirmPass"
+        class="form-control"
+        placeholder="********"
+      />
+      <div
+      *ngIf="
+        form.get('confirmPass').touched &&
+        form.get('confirmPass').errors?.['required'] ||
+        form.get('confirmPass').errors?.['minlength']
+      "
+      class="text-danger"
+    >
+      Required with minimum length 6.
+    </div>
+    </div><br>
+    <div class="">
+      <div class="col d-grid mt-4">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-outline-secondary">
+          Change password
+        </button>
+      </div>
+    </div>
+  </div>
     <ul class="list-group col-6">
-      <li class="list-group-item">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Old password</label
-        >
-        <input
-          type="password"
-          formControlName="oldPass"
-          name="password"
-          class="form-control"
-          placeholder="********"
-        />
-        <div
-        *ngIf="
-            form.get('oldPass').touched &&
-            form.get('oldPass').errors?.['required'] ||
-            form.get('oldPass').errors?.['minlength']
-          "
-        class="text-danger"
-      >
-        Required with minimum length 6.
-      </div>
-      </li>
-      <br />
-
-      <li class="list-group-item">
-        <label for="exampleFormControlInput1" class="form-label"
-          >New password</label
-        >
-        <input
-          type="password"
-          formControlName="newPass"
-          name="newPass"
-          class="form-control"
-          placeholder="********"
-        />
-        <div
-        *ngIf="
-          form.get('newPass').touched &&
-          form.get('newPass').errors?.['required'] ||
-          form.get('newPass').errors?.['minlength']
-        "
-        class="text-danger"
-      >
-        Required with minimum length 6.
-      </div>
-      </li><br>
-      <li class="list-group-item">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Confirm password</label
-        >
-        <input
-          type="password"
-          formControlName="confirmPass"
-          name="confirmPass"
-          class="form-control"
-          placeholder="********"
-        />
-        <div
-        *ngIf="
-          form.get('confirmPass').touched &&
-          form.get('confirmPass').errors?.['required'] ||
-          form.get('confirmPass').errors?.['minlength']
-        "
-        class="text-danger"
-      >
-        Required with minimum length 6.
-      </div>
-      </li><br>
-      <li class="list-group-item">
-        <div class="col d-grid mt-4">
-          <button type="submit" [disabled]="form.invalid" class="btn btn-outline-secondary">
-            Change password
-          </button>
-        </div>
-      </li>
     </ul>
   </form>
 </div>

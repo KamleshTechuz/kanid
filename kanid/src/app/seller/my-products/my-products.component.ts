@@ -17,18 +17,18 @@ export class MyProductsComponent implements OnInit {
   prodLength: any
   currentPage = 1
   totalProd: any
+  preStatus = true;
+  nextStatus = false;
   constructor(private sellerSer: SellerService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('seller-token')) {
-
-      this.getProducts()
-    }
+    this.getProducts()
 
   }
   getProducts() {
+console.log('this.currentPage : ',this.currentPage);
 
-    this.sellerSer.myProducts(1).subscribe(result => {
+    this.sellerSer.myProducts(this.currentPage).subscribe(result => {
 
       this.result = result
       this.error = this.result.error
@@ -47,7 +47,8 @@ export class MyProductsComponent implements OnInit {
 
         this.products = this.result.products
         this.totalProd = this.result.totalProds
-        this.prodLength = this.result.products.length
+        console.log(this.totalProd);
+        
       }
     })
   }
@@ -55,48 +56,37 @@ export class MyProductsComponent implements OnInit {
 
 
 
+
   nextPage() {
-    console.log(Math.ceil(this.totalProd / 2));
+
 
     if (this.currentPage >= (Math.ceil(this.totalProd / 2))) {
-      console.log(this.totalProd);
+      console.log(Math.ceil(this.totalProd / 2));
+      
+      this.nextStatus = true
 
-      this.currentPage = Math.ceil(this.totalProd / 2)
+
     } else {
-      console.log(this.totalProd);
-      console.log(this.currentPage);
-
+      this.preStatus = false
       this.currentPage += 1
-
     }
-    this.sellerSer.myProducts(this.currentPage).subscribe(result => {
-      this.result = result
-      this.products = this.result.products
-      this.prodLength = this.result.products.length
-      console.log(this.products);
-
-    })
+    this.getProducts()
   }
 
   prePage() {
 
     if (this.currentPage <= 1) {
-      this.currentPage = 1
+      // this.currentPage = 1
+      this.preStatus = true
+      this.nextStatus = false
+
     } else {
       this.currentPage -= 1
 
     }
-    console.log(this.currentPage);
+    this.getProducts()
 
-    this.sellerSer.myProducts(this.currentPage).subscribe(result => {
-      this.result = result
-      this.products = this.result.products
-      this.prodLength = this.result.products.length
-      console.log(this.products);
-
-    })
   }
-
 
 
 

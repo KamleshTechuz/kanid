@@ -8,6 +8,7 @@ router.post("/user/signup", userContro.signup);
 router.post("/user/login", userContro.login);
 router.get("/user/logout",isAuth, userContro.logout);
 router.post("/user/change-password",isAuth, userContro.changePass);
+router.post("/user/color", userContro.addColor)
 
 
 module.exports = router;

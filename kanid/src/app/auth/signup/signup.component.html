@@ -1,327 +1,347 @@
 <div class="container p-5">
-  <h1>Sign up for free...</h1>
-</div>
-
-<div class="container p-5 pt-0">
-  <form
-    class="form-signin"
-    (ngSubmit)="f.valid && onSubmit(f.value)"
-    #f="ngForm"
-    novalidate
-    [formGroup]="form"
-  >
+  <div class="shadow-lg card container p-5 pt-0">
     <div class="row py-2">
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >First name</label
+      <h1 class="pt-3">Sign up for free...</h1>
+      <div class="col pt-2">
+        <form
+          class="form-signin"
+          (ngSubmit)="f.valid && onSubmit(f.value)"
+          #f="ngForm"
+          novalidate
+          [formGroup]="form"
         >
-        <input
-          formControlName="firstname"
-          type="text"
-          name="fullname"
-          class="form-control"
-          placeholder="Jhon"
-        />
-        <div
-          *ngIf="
-              form.get('firstname').touched &&
-              form.get('firstname').errors?.['required'] ||
-              form.get('firstname').errors?.['minlength']
+          <div class="row py-2">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >First name</label
+              >
+              <input
+                formControlName="firstname"
+                type="text"
+                name="fullname"
+                class="form-control"
+                placeholder="Jhon"
+              />
+              <div
+                *ngIf="
+                    form.get('firstname').touched &&
+                    form.get('firstname').errors?.['required'] ||
+                    form.get('firstname').errors?.['minlength']
+                  "
+                class="text-danger"
+              >
+                First name required with minimum length 6.
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Last name</label
+              >
+              <input
+                formControlName="lastname"
+                type="text"
+                name="lastname"
+                class="form-control"
+                placeholder="Recherd"
+              />
+              <div
+                *ngIf="
+                  form.get('lastname').touched &&
+                  form.get('lastname').errors?.['required'] ||
+                  form.get('lastname').errors?.['minlength']
+                "
+                class="text-danger"
+              >
+                Last name required with minimum length 6.
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Username</label
+              >
+              <input
+                type="text"
+                formControlName="username"
+                name="username"
+                class="form-control"
+                placeholder="jhon_123"
+              />
+              <div
+                *ngIf="
+                  form.get('username').touched &&
+                  form.get('username').errors?.['required'] ||
+                  form.get('username').errors?.['minlength']
+                "
+                class="text-danger"
+              >
+                Username required with minimum length 6.
+              </div>
+            </div>
+          </div>
+
+          <div class="row py-2">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Email</label
+              >
+              <input
+                formControlName="email"
+                name="email"
+                type="email"
+                class="form-control"
+                placeholder="jhon@example.com"
+              />
+              <div
+                *ngIf="
+                  form.get('email').touched &&
+                  form.get('email').errors?.['required']
+                "
+                class="text-danger"
+              >
+                Email required with minimum length 6.
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Mobile number</label
+              >
+              <input
+                type="tel"
+                formControlName="mobile"
+                name="mobile"
+                class="form-control"
+                placeholder="+91 xxxxx xxxxx"
+              />
+              <div
+                *ngIf="
+                form.get('mobile').touched &&
+                form.get('mobile').errors?.['required'] ||
+                form.get('mobile').errors?.['minlength']
+              "
+                class="text-danger"
+              >
+                Number required with minimum length 10.
+              </div>
+            </div>
+          </div>
+
+          <div class="row py-2">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                formControlName="password"
+                name="password"
+                class="form-control"
+                placeholder="********"
+              />
+              <div
+                *ngIf="
+                form.get('password').touched &&
+                form.get('password').errors?.['required'] ||
+                form.get('password').errors?.['minlength']
+              "
+                class="text-danger"
+              >
+                Number required with minimum length 6.
+              </div>
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                formControlName="confirmPass"
+                name="confirmPass"
+                class="form-control"
+                placeholder="********"
+              />
+              <div
+                *ngIf="
+              form.get('confirmPass').touched &&
+              form.get('confirmPass').errors?.['required'] ||
+              form.get('confirmPass').errors?.['minlength']
             "
-          class="text-danger"
-        >
-          First name required with minimum length 6.
-        </div>
-      </div>
-
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Last name</label
-        >
-        <input
-          formControlName="lastname"
-          type="text"
-          name="lastname"
-          class="form-control"
-          placeholder="Recherd"
-        />
-        <div
-          *ngIf="
-            form.get('lastname').touched &&
-            form.get('lastname').errors?.['required'] ||
-            form.get('lastname').errors?.['minlength']
+                class="text-danger"
+              >
+                Number required with minimum length 6.
+              </div>
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Gender</label
+              >
+              <select
+                formControlName="gender"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <div
+                *ngIf="
+            form.get('gender').touched &&
+            form.get('gender').errors?.['required']
           "
-          class="text-danger"
-        >
-          Last name required with minimum length 6.
-        </div>
-      </div>
-
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Username</label
-        >
-        <input
-          type="text"
-          formControlName="username"
-          name="username"
-          class="form-control"
-          placeholder="jhon_123"
-        />
-        <div
-          *ngIf="
-            form.get('username').touched &&
-            form.get('username').errors?.['required'] ||
-            form.get('username').errors?.['minlength']
-          "
-          class="text-danger"
-        >
-          Username required with minimum length 6.
-        </div>
-      </div>
-    </div>
-
-    <div class="row py-2">
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label">Email</label>
-        <input
-          formControlName="email"
-          name="email"
-          type="email"
-          class="form-control"
-          placeholder="jhon@example.com"
-        />
-        <div
-          *ngIf="
-            form.get('email').touched &&
-            form.get('email').errors?.['required']
-          "
-          class="text-danger"
-        >
-          Email required with minimum length 6.
-        </div>
-      </div>
-
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Mobile number</label
-        >
-        <input
-          type="tel"
-          formControlName="mobile"
-          name="mobile"
-          class="form-control"
-          placeholder="+91 xxxxx xxxxx"
-        />
-        <div
-          *ngIf="
-          form.get('mobile').touched &&
-          form.get('mobile').errors?.['required'] ||
-          form.get('mobile').errors?.['minlength']
+                class="text-danger"
+              >
+                Gender required.
+              </div>
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Date of birth</label
+              >
+              <input
+                type="date"
+                formControlName="dateOfBirth"
+                name="dateOfBirth"
+                class="form-control"
+              />
+              <div
+                *ngIf="
+          form.get('dateOfBirth').touched &&
+          form.get('dateOfBirth').errors?.['required']
         "
-          class="text-danger"
-        >
-          Number required with minimum length 10.
-        </div>
-      </div>
-    </div>
+                class="text-danger"
+              >
+                Date required.
+              </div>
+            </div>
+          </div>
+          <div formGroupName="fullAddress">
+            <div class="col py-2">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Address</label
+              >
+              <input
+                type="text"
+                formControlName="place"
+                name="place"
+                class="form-control"
+                placeholder="Pathar ka chowk"
+              />
+              <div
+                *ngIf="
+            form.get('fullAddress.place').touched &&
+            form.get('fullAddress.place').errors?.['required'] ||
+            form.get('fullAddress.place').errors?.['minlength']
+          "
+                class="text-danger"
+              >
+                Address required with minimum length 6.
+              </div>
+            </div>
 
-    <div class="row py-2">
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Password</label
-        >
-        <input
-          type="password"
-          formControlName="password"
-          name="password"
-          class="form-control"
-          placeholder="********"
-        />
-        <div
-          *ngIf="
-          form.get('password').touched &&
-          form.get('password').errors?.['required'] ||
-          form.get('password').errors?.['minlength']
+            <div class="row py-2">
+              <div class="col">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >City</label
+                >
+                <input
+                  type="text"
+                  formControlName="city"
+                  name="city"
+                  class="form-control"
+                  placeholder="Nagaur"
+                />
+                <div
+                  *ngIf="
+            form.get('fullAddress.city').touched &&
+            form.get('fullAddress.city').errors?.['required'] ||
+            form.get('fullAddress.city').errors?.['minlength']
+          "
+                  class="text-danger"
+                >
+                  City required with minimum length 6.
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >State</label
+                >
+                <input
+                  type="text"
+                  formControlName="state"
+                  name="state"
+                  class="form-control"
+                  placeholder="Rajasthan"
+                />
+                <div
+                  *ngIf="
+          form.get('fullAddress.state').touched &&
+          form.get('fullAddress.state').errors?.['required'] ||
+          form.get('fullAddress.state').errors?.['minlength']
         "
-          class="text-danger"
-        >
-          Number required with minimum length 6.
-        </div>
-      </div>
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Confirm Password</label
-        >
-        <input
-          type="password"
-          formControlName="confirmPass"
-          name="confirmPass"
-          class="form-control"
-          placeholder="********"
-        />
-        <div
-          *ngIf="
-        form.get('confirmPass').touched &&
-        form.get('confirmPass').errors?.['required'] ||
-        form.get('confirmPass').errors?.['minlength']
+                  class="text-danger"
+                >
+                  State required with minimum length 6.
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Pin code</label
+                >
+                <input
+                  type="text"
+                  formControlName="pinCode"
+                  name="pinCode"
+                  class="form-control"
+                  placeholder="Jhon Recherd"
+                />
+                <div
+                  *ngIf="
+        form.get('fullAddress.pinCode').touched &&
+        form.get('fullAddress.pinCode').errors?.['required'] ||
+        form.get('fullAddress.pinCode').errors?.['minlength']
       "
-          class="text-danger"
-        >
-          Number required with minimum length 6.
-        </div>
+                  class="text-danger"
+                >
+                  Pin code required with minimum length 6.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="col d-grid mt-4">
+              <button
+                type="button"
+                routerLink="/account/login"
+                class="btn btn-outline-secondary"
+              >
+                Back to login
+              </button>
+            </div>
+            <div class="col d-grid mt-4">
+              <button
+                type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-outline-secondary"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
-    <div class="row py-2">
       <div class="col">
-        <label for="exampleFormControlInput1" class="form-label">Gender</label>
-        <select
-          formControlName="gender"
-          class="form-select"
-          aria-label="Default select example"
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <div
-          *ngIf="
-      form.get('gender').touched &&
-      form.get('gender').errors?.['required']
-    "
-          class="text-danger"
-        >
-          Gender required.
-        </div>
-      </div>
-      <div class="col">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Date of birth</label
-        >
-        <input
-          type="date"
-          formControlName="dateOfBirth"
-          name="dateOfBirth"
-          class="form-control"
+        <img
+          class="img-fluid rounded"
+          src="https://source.unsplash.com/random/600x650/?technology"
+          alt=""
         />
-        <div
-          *ngIf="
-    form.get('dateOfBirth').touched &&
-    form.get('dateOfBirth').errors?.['required']
-  "
-          class="text-danger"
-        >
-          Date required.
-        </div>
       </div>
     </div>
-    <div formGroupName="fullAddress">
-      <div class="col py-2">
-        <label for="exampleFormControlInput1" class="form-label">Address</label>
-        <input
-          type="text"
-          formControlName="place"
-          name="place"
-          class="form-control"
-          placeholder="Pathar ka chowk"
-        />
-        <div
-          *ngIf="
-      form.get('fullAddress.place').touched &&
-      form.get('fullAddress.place').errors?.['required'] ||
-      form.get('fullAddress.place').errors?.['minlength']
-    "
-          class="text-danger"
-        >
-          Address required with minimum length 6.
-        </div>
-      </div>
-
-      <div class="row py-2">
-        <div class="col">
-          <label for="exampleFormControlInput1" class="form-label">City</label>
-          <input
-            type="text"
-            formControlName="city"
-            name="city"
-            class="form-control"
-            placeholder="Nagaur"
-          />
-          <div
-            *ngIf="
-      form.get('fullAddress.city').touched &&
-      form.get('fullAddress.city').errors?.['required'] ||
-      form.get('fullAddress.city').errors?.['minlength']
-    "
-            class="text-danger"
-          >
-            City required with minimum length 6.
-          </div>
-        </div>
-
-        <div class="col">
-          <label for="exampleFormControlInput1" class="form-label">State</label>
-          <input
-            type="text"
-            formControlName="state"
-            name="state"
-            class="form-control"
-            placeholder="Rajasthan"
-          />
-          <div
-            *ngIf="
-    form.get('fullAddress.state').touched &&
-    form.get('fullAddress.state').errors?.['required'] ||
-    form.get('fullAddress.state').errors?.['minlength']
-  "
-            class="text-danger"
-          >
-            State required with minimum length 6.
-          </div>
-        </div>
-
-        <div class="col">
-          <label for="exampleFormControlInput1" class="form-label"
-            >Pin code</label
-          >
-          <input
-            type="text"
-            formControlName="pinCode"
-            name="pinCode"
-            class="form-control"
-            placeholder="Jhon Recherd"
-          />
-          <div
-            *ngIf="
-  form.get('fullAddress.pinCode').touched &&
-  form.get('fullAddress.pinCode').errors?.['required'] ||
-  form.get('fullAddress.pinCode').errors?.['minlength']
-"
-            class="text-danger"
-          >
-            Pin code required with minimum length 6.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row py-2">
-      <div class="col d-grid mt-4">
-        <button
-          type="button"
-          routerLink="/account/login"
-          class="btn btn-outline-secondary"
-        >
-          Back to login
-        </button>
-      </div>
-      <div class="col d-grid mt-4">
-        <button
-          type="submit"
-          [disabled]="form.invalid"
-          class="btn btn-outline-secondary"
-        >
-          Sign Up
-        </button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>
