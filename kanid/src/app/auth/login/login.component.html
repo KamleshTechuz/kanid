@@ -1,17 +1,12 @@
 <br /><br />
-<div class="container">
-  <div class="container">
-    <h1>Login to save more...</h1>
-  </div>
+<div class="container p-5">
   <br />
-  <div class="container" *ngIf="data?.error">
-    <p class="alert alert-danger">{{ data?.error }}</p>
-  </div>
-  <br />
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
+  <div class="shadow-lg card container p-5">
+    <div class="row py-2">
+      <div class="col pt-2">
+        <h1 class="">Login to save more...</h1>
         <form
+        class="pt-4"
           (ngSubmit)="f.valid && onSubmit(f.value)"
           #f="ngForm"
           [formGroup]="form"
@@ -34,7 +29,8 @@
               "
               class="text-danger"
             >
-              Email is required
+            Email is required
+            <div class="text-danger">Not a coreect Email.</div>
             </div>
           </div>
           <div class="mb-3">
@@ -87,7 +83,13 @@
           </div>
         </form>
       </div>
-      <div class="col-3"></div>
+      <div class="col">
+        <img
+          class="img-fluid rounded"
+          src="https://source.unsplash.com/random/600x360/?technology"
+          alt=""
+        />
+      </div>
     </div>
   </div>
 </div>

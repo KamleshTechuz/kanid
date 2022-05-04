@@ -53,9 +53,9 @@ export class SellerLoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.route.navigateByUrl('/seller/my-products')
         const getted = localStorage.getItem('seller-token')
         if (getted) {
-          this.route.navigateByUrl('/seller/my-products')
         }
       }
 

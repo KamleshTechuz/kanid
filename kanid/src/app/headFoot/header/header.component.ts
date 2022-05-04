@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/services/home.service';
-import { ProductsService } from 'src/app/services/products.service';
 import { SellerService } from 'src/app/services/seller.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -87,7 +86,7 @@ export class HeaderComponent implements OnInit {
           timer: 1500
         })
         localStorage.clear()
-        this.router.navigateByUrl('/account/seller/login')
+        this.router.navigateByUrl('/seller/login')
 
       }
     })

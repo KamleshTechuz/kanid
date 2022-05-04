@@ -8,11 +8,6 @@ export class SellerService {
   url = 'http://localhost:3000/api/seller/'
   constructor(private _http: HttpClient) { }
 
-  myHeader = {
-    headers: new HttpHeaders({
-      'Authorization': `${localStorage.getItem('seller-token')}`
-    })
-  }
 
   login(loginData: any) {
     return this._http.post(this.url + 'login', loginData)
@@ -22,27 +17,26 @@ export class SellerService {
     return this._http.post(this.url + 'signup', signupData)
   }
   logout() {
-    return this._http.get(this.url + 'logout', this.myHeader)
+    return this._http.get(this.url + 'logout')
   }
   changePass(Data: any) {
-    return this._http.post(this.url + 'change-password', Data, this.myHeader)
+    return this._http.post(this.url + 'change-password', Data)
   }
   getProdById(prodId: any) {
-    return this._http.get(this.url + `my-product/${prodId}`, this.myHeader)
+    return this._http.get(this.url + `my-product/${prodId}`)
   }
 
   myProducts(pageInfo?: any) {
-    return this._http.get(this.url + `my-products?page=${pageInfo}`, this.myHeader)
+    return this._http.get(this.url + `my-products?page=${pageInfo}`)
   }
 
   addProduct(loginData: any) {
-    return this._http.post(this.url + 'add-product', loginData,
-      this.myHeader)
+    return this._http.post(this.url + 'add-product', loginData)
   }
   ondelete(prodId: any) {
-    return this._http.post(this.url + `my-product/:${prodId}/delete`, { prodId }, this.myHeader)
+    return this._http.post(this.url + `my-product/:${prodId}/delete`, { prodId })
   }
   onupdate(prodId: any, productData: any) {
-    return this._http.post(this.url + `my-product/${prodId}/update`, productData, this.myHeader)
+    return this._http.post(this.url + `my-product/${prodId}/update`, productData)
   }
 }

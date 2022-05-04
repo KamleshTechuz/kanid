@@ -1,68 +1,91 @@
-<div *ngIf="prodLength > 0; then yesProdcuts; else noProducts"></div>
+<div *ngIf="totalProd > 0; then yesProdcuts; else noProducts"></div>
 <ng-template #yesProdcuts>
   <div class="container pt-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div *ngFor="let product of products">
         <div class="col">
-          <div class="card">
-            <img src= {{product.imageUrl}} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">{{ product.productName }}</h5>
-              <p class="card-text">Price : {{ product.price }}</p>
-              <p *ngFor="let color of product.colors">{{color.colorName}}</p>
-              <p class="card-text">Brand name : {{ product.brandName }}</p>
-              <p class="card-text">Description : {{ product.description }}</p>
-              <div class="row">
-                <div class="col">
-                  <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="update(product.id)"
-                  >
-                    update
-                  </button>
-                </div>
-                <div class="col">
-                  <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="delete(product.id)"
-                  >
-                    delete
-                  </button>
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0 p-2">
+              <div class="col-md-4">
+                <img src="http://localhost:3000/{{product.imageUrl}}" class="img-fluid rounded-start" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{product.productName}}</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                  <div class="row">
+                    <div class="col">
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        (click)="update(product.id)"
+                      >
+                        update
+                      </button>
+                    </div>
+                    <div class="col">
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        (click)="delete(product.id)"
+                      >
+                        delete
+                      </button>
+                    </div>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="container fixed-bottom">
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item">
-          <button class="page-link" (click)="prePage()" type="button">
-            Previous
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" type="button">1</button>
-        </li>
-        <li class="page-item" aria-current="page">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <button class="page-link" type="button">3</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" type="button" (click)="nextPage()">
-            Next
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <div *ngIf="totalProd > 2; then pagination"></div>
+  <ng-template #pagination>
+    <div class="position-absolute bottom-0 end-50">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item">
+            <button
+              class="page-link"
+              [disabled]="preStatus"
+              (click)="prePage()"
+              type="button"
+            >
+              Previous
+            </button>
+          </li>
+          <li class="page-item">
+            <button class="page-link" type="button">1</button>
+          </li>
+          <li class="page-item" aria-current="page">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <button class="page-link" type="button">3</button>
+          </li>
+          <li class="page-item">
+            <button
+              class="page-link"
+              type="button"
+              [disabled]="nextStatus"
+              (click)="nextPage()"
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </ng-template>
 </ng-template>
 <ng-template #noProducts>
   <div class="container pt-5">

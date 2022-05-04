@@ -2,6 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Seller = require("../models/seller");
+const Color = require('../models/color')
 exports.signup = async (req, res) => {
   console.log(req.body);
   const {
@@ -144,4 +145,9 @@ exports.changePass = async (req, res) => {
     console.log(error);
     return res.json({ error: "Incorrect password." });
   }
+};
+exports.addColor = async (req, res) => {
+  console.log(req.body);
+  await Color.create({colorName : req.body.colorName})
+  return res.json({message : "color addition"})
 };

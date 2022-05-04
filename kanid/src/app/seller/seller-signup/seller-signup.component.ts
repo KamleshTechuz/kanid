@@ -30,8 +30,8 @@ export class SellerSignupComponent implements OnInit {
   generateForm() {
 
     this.form = this.fb.group({
-      firstname: ['', [Validators.required, Validators.minLength(6)]],
-      lastname: ['', [Validators.required, Validators.minLength(6)]],
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.minLength(10)]],

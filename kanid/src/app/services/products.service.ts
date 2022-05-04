@@ -7,11 +7,7 @@ import { Injectable } from '@angular/core';
 export class ProductsService {
 
   url = 'http://localhost:3000/api/'
-  myHeader = {
-    headers: new HttpHeaders({
-      'Authorization': `${localStorage.getItem('seller-token')}`
-    })
-  }
+
   constructor(private _http: HttpClient) { }
 
   getProduct(pageInfo?: any) {
@@ -27,7 +23,7 @@ export class ProductsService {
 
 
   getColor() {    
-    return this._http.get(`http://localhost:3000/api/user/color`, this.myHeader)
+    return this._http.get(`http://localhost:3000/api/user/color`)
   }
 }
 

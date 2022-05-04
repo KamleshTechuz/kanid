@@ -1,9 +1,8 @@
-import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { SellerService } from 'src/app/services/seller.service';
-import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +14,7 @@ export class AddProdComponent implements OnInit {
 
 
   form: any
-  public data: any;
+  file: any
   error: any
   message: any
   result: any
@@ -38,7 +37,7 @@ export class AddProdComponent implements OnInit {
       productName: ['', [Validators.required, Validators.minLength(6)]],
       brandName: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      image: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(20)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -75,23 +74,28 @@ export class AddProdComponent implements OnInit {
     })
   }
 
-  onFileSelect(e: any) {
-    const file = (e.target as HTMLInputElement).files
-    console.log(file);
-
-    this.form.patchValue({
-      image: file
-    })
-    this.form.get('image')?.updateValueAndValidity()
+  onSelectFile(event: any) {
+    console.log(event.target.files);
+    this.file = event.target.files[0]
 
   }
 
+  jsonToFormData(formData: any) {
+    const newFormData = new FormData()
+    for (var key in formData) {
+      
+      newFormData.append(key, formData[key]);
+    }
+    newFormData.append('image', this.file)
+    return newFormData
+  }
   onSubmit(formData: any, event: any) {
 
-    console.log(formData);
+    const myFormData = this.jsonToFormData(formData)
 
+console.log(formData);
 
-    this.sellerSer.addProduct(formData).subscribe(result => {
+    this.sellerSer.addProduct(myFormData).subscribe(result => {
       console.log(result);
       this.result = result
       this.error = this.result.error
